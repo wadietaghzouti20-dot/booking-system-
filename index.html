@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#145b52"><meta name="description" content="Request an appointment with your clinic.">
+  <title>Clinic Booking System 1</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar"><a class="brand" href="./" aria-label="Clinic Booking System 1 home"><span class="brand-mark" aria-hidden="true">+</span><span id="clinic-name">Clinic Booking System 1</span></a><span class="secure-label">Appointment request</span></header>
+<main class="shell">
+  <section class="intro"><p class="eyebrow">PATIENT SERVICES</p><h1>Book an appointment</h1><p class="intro-copy">Tell us what you need and your preferred time. The clinic will review your request.</p></section>
+  <section class="booking-card" aria-labelledby="question-title">
+    <div class="step-meta"><span id="step-count">Step 1 of 6</span><span id="step-caption">Appointment type</span></div>
+    <div class="progress-track" role="progressbar" aria-label="Booking progress" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1" id="progress"><span id="progress-fill"></span></div>
+    <div id="step-content" class="step-content" aria-live="polite"></div>
+    <p id="form-error" class="error" role="alert" hidden></p>
+    <div class="actions" id="actions"><button id="back-button" class="button button-secondary" type="button" hidden>Back</button><button id="continue-button" class="button button-primary" type="button" disabled>Continue</button></div>
+    <p class="privacy-note">Your information is sent to the clinic to handle your appointment request.</p>
+  </section>
+  <footer>For urgent or emergency care, contact local emergency services or the clinic directly.</footer>
+</main>
+<script src="config.js"></script><script src="app.js"></script>
+</body></html>
