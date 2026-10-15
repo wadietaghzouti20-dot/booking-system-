@@ -22,6 +22,8 @@ jobs:
           node-version: 22
       - name: Check frontend JavaScript syntax
         run: node --check app.js
+      - name: Check public configuration JavaScript syntax
+        run: node --check config.js
       - name: Check Apps Script JavaScript syntax
         run: cp apps-script/Code.gs /tmp/Code.js && node --check /tmp/Code.js
       - name: Verify required frontend files exist
