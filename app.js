@@ -88,7 +88,8 @@
       if(!response.ok) throw new Error("Le service de réservation est temporairement indisponible. Réessayez plus tard.");
       let result;try{result=await response.json();}catch(e){throw new Error("Le service a renvoyé une réponse inattendue. Votre demande n’est pas confirmée.");}
       if(!result||result.ok!==true||!result.bookingId) throw new Error(result&&result.message?result.message:"La demande n’a pas pu être enregistrée. Réessayez.");
-      try { sessionStorage.removeItem("clinicBookingRequestId"); } catch(e) {}\n      state.submitted=true;count.textContent="Demande reçue";caption.textContent="État de l’envoi";fill.style.width="100%";
+      try { sessionStorage.removeItem("clinicBookingRequestId"); } catch(e) {}
+      state.submitted=true;count.textContent="Demande reçue";caption.textContent="État de l’envoi";fill.style.width="100%";
       content.innerHTML='<div class="result-box"><h2>Votre demande a été reçue</h2><p>Le service a enregistré votre demande. '+(result.status==="CONFIRMED"?"Votre rendez-vous est confirmé.":"Votre rendez-vous reste en attente de validation par la clinique ; il n’est pas encore confirmé.")+'</p><p>Numéro de référence</p><p class="reference">'+esc(result.bookingId)+'</p><p>Conservez ce numéro. Contactez directement la clinique si vous avez besoin d’aide urgente.</p></div>';
       back.hidden=true;next.hidden=true;document.querySelector(".privacy-note").hidden=true;
     } catch(err) { showError(err.message||"Impossible d’envoyer la demande. Vérifiez votre connexion et réessayez."); }
