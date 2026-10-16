@@ -23,7 +23,7 @@
   function validStep(n) {
     if (n === 0) return !!picked("appointmentType") && $("note").value.length <= 300;
     if (n === 1) return !!$("requestedDate").value && $("requestedDate").value >= $("requestedDate").min && $("requestedDate").value <= $("requestedDate").max && !!$("requestedTime").value;
-    if (n === 2) return $("patientName").value.trim().length >= 2 && $("patientName").value.trim().length <= 100 && $("phone").value.trim().replace(/[^\d+]/g,"").length >= 7 && $("phone").value.length <= 25 && (!$("email").value || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($("email").value));
+    if (n === 2) return $("patientName").value.trim().length >= 2 && $("patientName").value.trim().length <= 100 && $("phone").value.trim().replace(/[^\d+]/g,"").length >= 7 && $("phone").value.length <= 25 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($("email").value.trim());
     if (n === 3) return $("consent").checked;
     return false;
   }
