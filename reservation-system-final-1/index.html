@@ -17,9 +17,9 @@
     <section class="intro">
       <p class="eyebrow">VOTRE CLINIQUE, EN TOUTE SIMPLICITÉ</p>
       <h1>Votre prochain rendez-vous<br><span>commence ici.</span></h1>
-      <p class="intro-copy">Choisissez votre préférence horaire. Si un créneau compatible est disponible, il sera réservé automatiquement dans l’agenda de la clinique. Sinon, vous pourrez choisir une autre disponibilité par e-mail.</p>
+      <p class="intro-copy">Envoyez une demande de rendez-vous à la clinique. Votre demande sera enregistrée puis examinée par l’équipe. Le rendez-vous n’est confirmé qu’après validation par la clinique.</p>
       <div class="trust-row"><span><span class="check">✓</span> Simple et rapide</span><span><span class="check">✓</span> Vos informations restent privées</span></div>
-      <div class="help-card"><div class="help-icon" aria-hidden="true">i</div><div><strong>À savoir</strong><p>Votre rendez-vous est confirmé uniquement lorsqu’un créneau a été réservé dans l’agenda. Si votre préférence est complète, vous recevrez un lien pour choisir un autre créneau.</p></div></div>
+      <div class="help-card"><div class="help-icon" aria-hidden="true">i</div><div><strong>À savoir</strong><p>L’envoi du formulaire ne confirme pas votre rendez-vous. La clinique vous contactera pour confirmer la date et l’heure.</p></div></div>
     </section>
     <section class="form-card" aria-labelledby="form-heading">
       <div class="card-heading"><div><p class="card-kicker">FORMULAIRE DE DEMANDE</p><h2 id="form-heading">Parlons de votre visite</h2></div><span class="step-pill" id="step-pill">Étape 1 / 4</span></div>
@@ -43,7 +43,7 @@
         <section class="form-step" data-step="1" hidden>
           <h3>Quand souhaitez-vous venir ?</h3><p class="muted">Indiquez votre préférence. La clinique vérifiera les disponibilités avant de confirmer.</p>
           <div class="field"><label for="requestedDate">Date souhaitée <span class="required">*</span></label><input id="requestedDate" name="requestedDate" type="date" required><small class="field-help">Vous pourrez discuter d’une autre date avec la clinique.</small></div>
-          <div class="field"><label for="requestedTime">Moment préféré <span class="required">*</span></label><select id="requestedTime" name="requestedTime" required><option value="ANY">Tous les créneaux disponibles</option><option value="08_10">08 h – 10 h</option><option value="10_12">10 h – 12 h</option><option value="13_15">13 h – 15 h</option><option value="15_17">15 h – 17 h</option></select></div>
+          <div class="field"><label for="requestedTime">Moment préféré <span class="required">*</span></label><select id="requestedTime" name="requestedTime" required><option value="ANY">Tous les créneaux disponibles</option><option value="MORNING">Le matin</option><option value="AFTERNOON">L’après-midi</option></select></div>
         </section>
         <section class="form-step" data-step="2" hidden>
           <h3>Comment vous contacter ?</h3><p class="muted">Ces informations servent uniquement au suivi de votre demande.</p>
@@ -66,6 +66,6 @@
   </main>
   <footer>En cas d’urgence, contactez directement la clinique ou les services d’urgence locaux. Ce formulaire ne remplace pas une consultation.</footer>
   <iframe name="reservation-response" id="reservation-response" title="Réponse de réservation" hidden></iframe>
-  <script src="./config.js?v=4"></script><script src="./app.js?v=4"></script>
+  <script src="./config.js?v=5"></script><script src="./app.js?v=5"></script>
 </body>
 </html>
