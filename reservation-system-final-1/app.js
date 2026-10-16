@@ -41,7 +41,7 @@
     const values = [
       ["Motif",picked("appointmentType")],
       ["Date souhaitée",$("requestedDate").value],
-      ["Moment préféré",({"ANY":"Toute heure disponible","MORNING":"Le matin (09 h – 12 h)","AFTERNOON":"L’après-midi (12 h – 18 h)"}[$("requestedTime").value] || $("requestedTime").value)],
+      ["Moment préféré",({"ANY":"Tous les créneaux disponibles","08_10":"08 h – 10 h","10_12":"10 h – 12 h","13_15":"13 h – 15 h","15_17":"15 h – 17 h","MORNING":"Le matin","AFTERNOON":"L’après-midi"}[$("requestedTime").value] || $("requestedTime").value)],
       ["Nom complet",$("patientName").value.trim()],
       ["Téléphone",$("phone").value.trim()],
       ["E-mail",$("email").value.trim() || "Non renseigné"],
