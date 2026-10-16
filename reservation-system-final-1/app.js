@@ -50,15 +50,21 @@
     summary.innerHTML = values.map(([k,v]) => "<div><dt>"+esc(k)+"</dt><dd>"+esc(v)+"</dd></div>").join("");
   }
   function showError(message) { error.textContent = message; error.hidden = !message; }
-  function showSuccess(reference) {
+  function showSuccess(reference, booked, message) {
     submitted = true; busy = false;
     steps.forEach(el => el.hidden = true);
     actions.hidden = true; error.hidden = true;
     const panel = document.querySelector(".success-panel");
     panel.hidden = false;
-    $("success-copy").textContent = "Votre demande a été transmise à la clinique. Elle reste en attente jusqu’à confirmation.";
+    $("success-heading").textContent = booked ? "Rendez-vous confirmé" : "Demande reçue";
+    $("success-copy").textContent = booked
+      ? (message || "Votre rendez-vous est réservé dans l’agenda de la clinique.")
+      : (message || "Aucun créneau ne correspondait à votre préférence. Consultez votre e-mail pour choisir une autre disponibilité.");
     $("booking-reference").textContent = reference ? "Référence : " + reference : "Référence non disponible — contactez la clinique si nécessaire.";
-    $("form-heading").textContent = "Votre demande a bien été transmise";
+    $("success-next-step").textContent = booked
+      ? "Un e-mail récapitulatif sera envoyé si vous avez fourni une adresse e-mail. Vous pouvez utiliser son lien pour annuler ce rendez-vous."
+      : "Aucun rendez-vous n’est encore réservé. Si vous avez fourni une adresse e-mail, vérifiez-la pour ouvrir le sélecteur de créneaux.";
+    $("form-heading").textContent = booked ? "Votre rendez-vous est confirmé" : "Votre demande a été reçue";
     $("step-pill").textContent = "Terminé";
     progress.style.width = "100%";
     document.querySelector(".card-foot").hidden = true;
@@ -108,7 +114,7 @@
       window.removeEventListener("message",listener);
       clearTimeout(timer);
       const result = event.data;
-      if (result.ok && result.bookingId) showSuccess(result.bookingId);
+      if (result.ok && result.bookingId) showSuccess(result.bookingId, result.booked === true, result.message || "");
       else { busy=false; next.disabled=!validStep(step); next.textContent="Réessayer →"; showError(result.message || "La demande n’a pas été enregistrée. Vérifiez les informations et réessayez."); }
     };
     window.addEventListener("message",listener);
