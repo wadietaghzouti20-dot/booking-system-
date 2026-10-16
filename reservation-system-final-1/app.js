@@ -110,7 +110,7 @@
       source:"reservation-system-final-1"
     };
     const listener = event => {
-      if (event.source !== responseFrame.contentWindow || !event.data || event.data.type !== "reservation-result") return;
+      if (!event.data || event.data.type !== "reservation-result" || event.data.clientRequestId !== payload.clientRequestId) return;
       window.removeEventListener("message",listener);
       clearTimeout(timer);
       const result = event.data;
@@ -123,14 +123,14 @@
     form.appendChild(hidden);
     const oldTarget = form.target, oldMethod = form.method, oldAction = form.action, oldEnctype = form.enctype;
     form.target="reservation-response"; form.method="POST"; form.action=cfg.endpoint; form.enctype="application/x-www-form-urlencoded";
-    form.submit();
-    hidden.remove();
-    form.target=oldTarget; form.method=oldMethod; form.action=oldAction; form.enctype=oldEnctype;
     timer = setTimeout(() => {
       window.removeEventListener("message",listener);
       busy=false; next.disabled=!validStep(step); next.textContent="Réessayer →";
-      showError("Nous n’avons pas pu vérifier la réponse du service. La demande n’est pas confirmée. Vérifiez la connexion ou réessayez après avoir contrôlé la feuille de calcul.");
+      showError("Le service n’a pas renvoyé de réponse exploitable. Vérifiez Apps Script > Exécutions et la feuille Appointments avant de réessayer.");
     },20000);
+    form.submit();
+    hidden.remove();
+    form.target=oldTarget; form.method=oldMethod; form.action=oldAction; form.enctype=oldEnctype;
   }
   render();
 })();
