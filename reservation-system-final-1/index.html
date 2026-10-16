@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123f39">
+  <meta name="description" content="Formulaire sécurisé de demande de rendez-vous auprès de votre clinique.">
+  <title>Reservation System Final 1</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Accueil"><span class="brand-icon" aria-hidden="true">+</span><span id="clinic-name">Reservation System Final 1</span></a>
+    <span class="top-note"><span class="status-dot"></span> Demande en ligne</span>
+  </header>
+  <main class="layout">
+    <section class="intro">
+      <p class="eyebrow">VOTRE CLINIQUE, EN TOUTE SIMPLICITÉ</p>
+      <h1>Votre prochain rendez-vous<br><span>commence ici.</span></h1>
+      <p class="intro-copy">Envoyez votre demande en quelques étapes. L’équipe de la clinique vous contactera pour confirmer la date et l’heure.</p>
+      <div class="trust-row"><span><span class="check">✓</span> Simple et rapide</span><span><span class="check">✓</span> Vos informations restent privées</span></div>
+      <div class="help-card"><div class="help-icon" aria-hidden="true">i</div><div><strong>À savoir</strong><p>Ce formulaire envoie une demande. Votre rendez-vous n’est confirmé qu’après le retour de la clinique.</p></div></div>
+    </section>
+    <section class="form-card" aria-labelledby="form-heading">
+      <div class="card-heading"><div><p class="card-kicker">FORMULAIRE DE DEMANDE</p><h2 id="form-heading">Parlons de votre visite</h2></div><span class="step-pill" id="step-pill">Étape 1 / 4</span></div>
+      <div class="progress"><span id="progress-fill"></span></div>
+      <form id="booking-form" novalidate>
+        <section class="form-step active" data-step="0">
+          <h3>Quel est le motif de votre visite ?</h3><p class="muted">Choisissez l’option qui correspond le mieux à votre besoin.</p>
+          <div class="choice-grid">
+            <label class="choice"><input type="radio" name="appointmentType" value="Consultation" required><span class="choice-symbol">＋</span><span><strong>Consultation</strong><small>Première visite ou nouveau besoin</small></span></label>
+            <label class="choice"><input type="radio" name="appointmentType" value="Suivi" required><span class="choice-symbol">↻</span><span><strong>Rendez-vous de suivi</strong><small>Visite de contrôle ou suivi</small></span></label>
+            <label class="choice"><input type="radio" name="appointmentType" value="Autre" required><span class="choice-symbol">•••</span><span><strong>Autre motif</strong><small>Une autre raison de consulter</small></span></label>
+          </div>
+          <div class="field"><label for="note">Message complémentaire <span class="optional">Facultatif</span></label><textarea id="note" name="note" maxlength="300" rows="3" placeholder="Une précision utile pour la clinique (300 caractères max.)"></textarea><small class="field-help">N’incluez pas de détails médicaux sensibles.</small></div>
+        </section>
+        <section class="form-step" data-step="1" hidden>
+          <h3>Quand souhaitez-vous venir ?</h3><p class="muted">Indiquez votre préférence. La clinique vérifiera les disponibilités avant de confirmer.</p>
+          <div class="field"><label for="requestedDate">Date souhaitée <span class="required">*</span></label><input id="requestedDate" name="requestedDate" type="date" required><small class="field-help">Vous pourrez discuter d’une autre date avec la clinique.</small></div>
+          <div class="field"><label for="requestedTime">Moment préféré <span class="required">*</span></label><select id="requestedTime" name="requestedTime" required><option value="ANY">Toute heure disponible</option><option value="MORNING">Le matin (09 h – 12 h)</option><option value="AFTERNOON">L’après-midi (12 h – 18 h)</option></select></div>
+        </section>
+        <section class="form-step" data-step="2" hidden>
+          <h3>Comment vous contacter ?</h3><p class="muted">Ces informations servent uniquement au suivi de votre demande.</p>
+          <div class="field"><label for="patientName">Nom complet <span class="required">*</span></label><input id="patientName" name="patientName" autocomplete="name" maxlength="100" required placeholder="Votre nom complet"></div>
+          <div class="field"><label for="phone">Numéro de téléphone <span class="required">*</span></label><input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="25" required placeholder="Ex. 0550 00 00 00"></div>
+          <div class="field"><label for="email">Adresse e-mail <span class="optional">Facultatif</span></label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" placeholder="vous@exemple.com"></div>
+        </section>
+        <section class="form-step" data-step="3" hidden>
+          <h3>Vérifiez votre demande</h3><p class="muted">Vérifiez les informations avant de les envoyer.</p>
+          <dl class="summary" id="summary"></dl>
+          <label class="consent"><input id="consent" name="consent" type="checkbox" required><span>J’accepte que ces informations soient transmises à la clinique pour traiter ma demande.</span></label>
+          <p class="privacy">En envoyant ce formulaire, vous demandez à être contacté. N’envoyez pas d’informations médicales urgentes ici.</p>
+        </section>
+        <p id="form-error" class="message error" role="alert" hidden></p>
+        <div id="form-success" class="success-panel" role="status" hidden><span class="success-icon">✓</span><h3>Demande envoyée</h3><p id="success-copy">Votre demande a été transmise à la clinique.</p><p class="reference" id="booking-reference"></p><p>Gardez votre référence pour toute question. Attendez la confirmation de la clinique avant de vous déplacer.</p><button type="button" class="button secondary" id="new-request">Nouvelle demande</button></div>
+        <div class="form-actions" id="form-actions"><button type="button" class="button secondary" id="back-button" hidden>Retour</button><button type="button" class="button primary" id="next-button" disabled>Continuer <span aria-hidden="true">→</span></button></div>
+      </form>
+      <p class="card-foot"><span aria-hidden="true">▣</span> Vos informations sont utilisées uniquement pour traiter votre demande.</p>
+    </section>
+  </main>
+  <footer>En cas d’urgence, contactez directement la clinique ou les services d’urgence locaux. Ce formulaire ne remplace pas une consultation.</footer>
+  <iframe name="reservation-response" id="reservation-response" title="Réponse de réservation" hidden></iframe>
+  <script src="./config.js"></script><script src="./app.js"></script>
+</body>
+</html>
